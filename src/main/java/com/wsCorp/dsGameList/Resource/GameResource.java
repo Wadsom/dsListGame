@@ -3,12 +3,10 @@ package com.wsCorp.dsGameList.Resource;
 import com.wsCorp.dsGameList.DTO.GameDTO;
 import com.wsCorp.dsGameList.Repository.GameRepository;
 import com.wsCorp.dsGameList.Service.GameService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,4 +21,12 @@ public class GameResource {
         List<GameDTO> result = gameServ.getAll();
         return ResponseEntity.ok().body(result);
     }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<GameDTO> findOne(@PathVariable @Valid Long id) throws Exception {
+        GameDTO dto = gameServ.getOne(id);
+        return ResponseEntity.ok().body(dto);
+    }
+
+
 }

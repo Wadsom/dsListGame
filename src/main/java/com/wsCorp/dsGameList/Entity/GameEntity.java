@@ -11,7 +11,7 @@ public class GameEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    @Column(name = "game_year", columnDefinition = "TIMESTAMP WITHOU TIME ZONE")
+    @Column(name = "game_year")
     private Integer year;
     private String genre;
     private String platforms;
