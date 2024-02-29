@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 public class GameDTO {
-    @NotNull
     private Long id;
     @NotNull
     @NotEmpty
@@ -21,6 +20,13 @@ public class GameDTO {
     private String shortDescription;
 
     public GameDTO() {
+    }
+
+    public GameDTO(String title, Integer year, String imgUrl, String shortDescription) {
+        this.title = title;
+        this.year = year;
+        this.imgUrl = imgUrl;
+        this.shortDescription = shortDescription;
     }
 
     public GameDTO(GameEntity entity) {

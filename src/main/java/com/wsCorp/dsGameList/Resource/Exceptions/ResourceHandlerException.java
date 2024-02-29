@@ -1,5 +1,6 @@
 package com.wsCorp.dsGameList.Resource.Exceptions;
 
+import com.wsCorp.dsGameList.Service.Exceptions.DatabaseException;
 import com.wsCorp.dsGameList.Service.Exceptions.GameNotFoundException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.xml.crypto.Data;
 import java.time.Instant;
 
 @ControllerAdvice
@@ -27,5 +29,15 @@ public class ResourceHandlerException {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(stdErr);
     }
 
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<StandartError> gameNotFound(HttpServletRequest request, DatabaseException e) {
+        StandartError stdErr = new StandartError();
+        stdErr.setError(e.getMessage());
+        stdErr.setPath(request.getServletPath());
+        stdErr.setStatus(HttpStatus.BAD_REQUEST.value());
+        stdErr.setTimeStamp(Instant.now());
+        stdErr.setMessage("Item exists");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(stdErr);
+    }
 
 }

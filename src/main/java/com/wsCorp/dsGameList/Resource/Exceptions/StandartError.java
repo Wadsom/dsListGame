@@ -1,11 +1,13 @@
 package com.wsCorp.dsGameList.Resource.Exceptions;
 
+import jakarta.persistence.Column;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
 @Component
 public class StandartError {
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant timeStamp;
     private String path;
     private Integer status;
